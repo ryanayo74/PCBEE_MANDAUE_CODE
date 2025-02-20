@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PC Bee Mandaue</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #FF6BA1, #FFAC47);
+      height: 100vh;
+      overflow: hidden; /* Prevents scrollbars */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      background: white;
+      max-width: 800px;
+    }
+
+    .text-section {
+      margin-right: 20px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 48px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+
+    .button {
+      padding: 15px 40px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      background-color: #ffffff;
+      color: #000;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      margin-right: 20px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .image-section img {
+      width: 200px;
+      border-radius: 20px;
+    }
+
+    .logo {
+    font-weight: bold;
+    color: red;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo::before {
+    content: '';
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-image: url('https://m.media-amazon.com/images/I/51TU9gNw39L.jpg');
+    background-size: cover;
+    background-position: center;
+    margin-right: 8px;
+    border-radius: 50%; /* Optional, to make it circular */
+  }
+
+    /* Bouncing Ball Styling */
+    .bouncing-ball {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-color: pink;
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="text-section">
+      <div class="logo">SpiderMan</div>
+      <h1>PC BEE MANDAUE</h1>
+      <h2>Code</h2>
+      <div class="buttons">
+        <button id="admin-btn" class="button">Admin</button>
+        <button class="button">View Only</button>
+      </div>
+      
+      <!-- PIN Input Section -->
+      <div id="pin-container" style="display: none; margin-top: 20px;">
+        <label for="admin-pin">Enter PIN Code:</label>
+        <input type="password" id="admin-pin" placeholder="Enter PIN" style="padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
+        <button id="submit-pin" class="button" style="margin-left: 10px;">Submit</button>
+      </div>
+      
+      <!-- Table Section (Hidden initially) -->
+      <div id="table-container" style="display: none; margin-top: 20px;">
+        <table border="1" style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style="padding: 10px; background-color: #f0f0f0;">Date</th>
+              <th style="padding: 10px; background-color: #f0f0f0;">Code</th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+            <!-- Table rows will be added here -->
+          </tbody>
+        </table>
+        <button id="add-row-btn" class="button" style="margin-top: 10px;">Add Row</button>
+      </div>
+
+      <div id="pin-container" style="display: none; margin-top: 20px;">
+        <label for="admin-pin">Enter PIN Code:</label>
+        <input type="password" id="admin-pin" placeholder="Enter PIN" style="padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
+        <button id="submit-pin" class="button" style="margin-left: 10px;">Submit</button>
+      </div>
+    </div>
+
+    <div class="image-section">
+      <img src="https://image.lexica.art/md2_webp/9181bbb7-2df5-4b6a-b061-77e181a4195e" alt="Superhero Image">
+    </div>
+  </div>
+
+  <!-- Bouncing Balls -->
+  <div class="bouncing-ball" id="ball1"></div>
+  <div class="bouncing-ball" id="ball2"></div>
+  <div class="bouncing-ball" id="ball3"></div>
+
+  <script>
+    // Array to store ball data
+    const balls = [
+      { element: document.getElementById("ball1"), posX: 0, posY: 0, directionX: 1, directionY: 1 },
+      { element: document.getElementById("ball2"), posX: 100, posY: 100, directionX: -1, directionY: 1 },
+      { element: document.getElementById("ball3"), posX: 200, posY: 50, directionX: 1, directionY: -1 },
+    ];
+
+    const ballSpeed = 4;
+    const ballSize = 50;
+
+    function moveBalls() {
+      const maxWidth = window.innerWidth - ballSize;
+      const maxHeight = window.innerHeight - ballSize;
+
+      balls.forEach(ball => {
+        // Update ball position
+        ball.posX += ball.directionX * ballSpeed;
+        ball.posY += ball.directionY * ballSpeed;
+
+        // Check for collisions with screen edges
+        if (ball.posX <= 0 || ball.posX >= maxWidth) ball.directionX *= -1;
+        if (ball.posY <= 0 || ball.posY >= maxHeight) ball.directionY *= -1;
+
+        // Apply the new position
+        ball.element.style.left = `${ball.posX}px`;
+        ball.element.style.top = `${ball.posY}px`;
+      });
+
+      requestAnimationFrame(moveBalls);
+    }
+
+    document.getElementById("admin-btn").addEventListener("click", function () {
+      window.location.href = "coming-soon.html"; 
+    // Ensure any hidden elements are not displayed
+
+  });
+
+  // Redirect "View Only" button to "Coming Soon" page
+  document.querySelector(".button:not(#admin-btn)").addEventListener("click", function () {
+    window.location.href = "coming-soon.html"; // Ensure coming-soon.html is in the same directory
+  });
+
+
+  // Function to show PIN input for Admin
+  document.getElementById("admin-btn").addEventListener("click", function () {
+    const pinContainer = document.getElementById("pin-container");
+    // Show the PIN input field
+    pinContainer.style.display = "block";
+  });
+
+  // Redirect "View Only" button to "Coming Soon" page
+  document.querySelector(".button:not(#admin-btn)").addEventListener("click", function () {
+    window.location.href = "coming-soon.html"; // Ensure coming-soon.html is in the same directory
+  });
+
+  // Optional: Add logic to handle PIN submission
+  document.getElementById("submit-pin").addEventListener("click", function () {
+    const enteredPin = document.getElementById("admin-pin").value;
+    if (enteredPin === "1234") { // Replace "1234" with the actual PIN you want
+      alert("Access granted!");
+      document.getElementById("table-container").style.display = "block";
+    } else {
+      alert("Incorrect PIN. Please try again.");
+    }
+  });
+
+  // Function to add a new row with the current date and a random code
+  document.getElementById("add-row-btn").addEventListener("click", function () {
+    const tableBody = document.getElementById("table-body");
+
+    // Get the current date
+    const currentDate = new Date().toLocaleDateString();
+
+    // Generate a random 6-digit code
+    const randomCode = Math.floor(100000 + Math.random() * 900000);
+
+    // Create a new table row
+    const newRow = document.createElement("tr");
+    newRow.innerHTML = `
+      <td style="padding: 10px; text-align: center;">${currentDate}</td>
+      <td style="padding: 10px; text-align: center;">${randomCode}</td>
+    `;
+
+    // Append the new row to the table
+    tableBody.appendChild(newRow);
+  });
+
+    // Start the animation
+    moveBalls();
+  </script>
+</body>
+</html>

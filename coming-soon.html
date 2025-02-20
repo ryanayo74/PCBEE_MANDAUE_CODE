@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coming Soon</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to right, #FF6BA1, #FFAC47);
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <img src="https://gifdb.com/images/high/coming-soon-molang-riding-car-62bcehy95w3vqswd.gif">
+</body>
+</html>
+
+<script>
+
+  // Redirect "Admin" button to "Coming Soon" page
+  document.getElementById("admin-btn").addEventListener("click", function () {
+    window.location.href = "coming-soon.html"; // Ensure coming-soon.html is in the same directory
+  });
+
+  // Redirect "View Only" button to "Coming Soon" page
+  document.querySelector(".button:not(#admin-btn)").addEventListener("click", function () {
+    window.location.href = "coming-soon.html";
+  });
+
+  </script>
+  
