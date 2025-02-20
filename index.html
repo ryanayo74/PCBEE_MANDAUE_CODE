@@ -194,51 +194,6 @@
     window.location.href = "coming-soon.html"; // Ensure coming-soon.html is in the same directory
   });
 
-
-  // Function to show PIN input for Admin
-  document.getElementById("admin-btn").addEventListener("click", function () {
-    const pinContainer = document.getElementById("pin-container");
-    // Show the PIN input field
-    pinContainer.style.display = "block";
-  });
-
-  // Redirect "View Only" button to "Coming Soon" page
-  document.querySelector(".button:not(#admin-btn)").addEventListener("click", function () {
-    window.location.href = "coming-soon.html"; // Ensure coming-soon.html is in the same directory
-  });
-
-  // Optional: Add logic to handle PIN submission
-  document.getElementById("submit-pin").addEventListener("click", function () {
-    const enteredPin = document.getElementById("admin-pin").value;
-    if (enteredPin === "1234") { // Replace "1234" with the actual PIN you want
-      alert("Access granted!");
-      document.getElementById("table-container").style.display = "block";
-    } else {
-      alert("Incorrect PIN. Please try again.");
-    }
-  });
-
-  // Function to add a new row with the current date and a random code
-  document.getElementById("add-row-btn").addEventListener("click", function () {
-    const tableBody = document.getElementById("table-body");
-
-    // Get the current date
-    const currentDate = new Date().toLocaleDateString();
-
-    // Generate a random 6-digit code
-    const randomCode = Math.floor(100000 + Math.random() * 900000);
-
-    // Create a new table row
-    const newRow = document.createElement("tr");
-    newRow.innerHTML = `
-      <td style="padding: 10px; text-align: center;">${currentDate}</td>
-      <td style="padding: 10px; text-align: center;">${randomCode}</td>
-    `;
-
-    // Append the new row to the table
-    tableBody.appendChild(newRow);
-  });
-
     // Start the animation
     moveBalls();
   </script>
