@@ -4,92 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PC Bee Mandaue</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #FF6BA1, #FFAC47);
-      height: 100vh;
-      overflow: hidden; /* Prevents scrollbars */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .container {
-      display: flex;
-      align-items: center;
-      padding: 20px;
-      border-radius: 20px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      background: white;
-      max-width: 800px;
-    }
-
-    .text-section {
-      margin-right: 20px;
-    }
-
-    h1 {
-      font-size: 36px;
-      margin: 0;
-    }
-
-    h2 {
-      font-size: 48px;
-      font-weight: bold;
-      margin: 10px 0;
-    }
-
-    .buttons {
-      margin-top: 20px;
-    }
-
-    .button {
-      padding: 15px 40px;
-      font-size: 18px;
-      font-weight: bold;
-      border: none;
-      border-radius: 30px;
-      background-color: #ffffff;
-      color: #000;
-      cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      margin-right: 20px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    }
-
-    .image-section img {
-      width: 200px;
-      border-radius: 20px;
-    }
-
-    .logo {
-    font-weight: bold;
-    color: red;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-  }
-
-  .logo::before {
-    content: '';
-    width: 24px;
-    height: 24px;
-    display: inline-block;
-    background-image: url('https://m.media-amazon.com/images/I/51TU9gNw39L.jpg');
-    background-size: cover;
-    background-position: center;
-    margin-right: 8px;
-    border-radius: 50%; /* Optional, to make it circular */
-  }
-
-    /* Bouncing Ball Styling */
+    /* Custom Bouncing Ball Styling */
     .bouncing-ball {
       position: absolute;
       width: 50px;
@@ -100,49 +17,23 @@
     }
   </style>
 </head>
-<body>
-  <div class="container">
-    <div class="text-section">
-      <div class="logo">SpiderMan</div>
-      <h1>PC BEE MANDAUE</h1>
-      <h2>Code</h2>
+<body class="flex items-center justify-center h-screen bg-gradient-to-r from-pink-500 to-orange-400 overflow-hidden">
+  <div class="bg-white shadow-lg rounded-2xl flex items-center max-w-4xl p-6">
+    <div class="text-section mr-6">
+      <div class="flex items-center mb-4">
+        <div class="bg-cover bg-center w-6 h-6 rounded-full mr-2" style="background-image: url('https://m.media-amazon.com/images/I/51TU9gNw39L.jpg');"></div>
+        <span class="font-bold text-red-600 text-lg">SpiderMan</span>
+      </div>
+      <h1 class="text-3xl font-bold">PC BEE MANDAUE</h1>
+      <h2 class="text-5xl font-extrabold mt-2 mb-6">Code</h2>
       <div class="buttons">
-        <button id="admin-btn" class="button">Admin</button>
-        <button class="button">View Only</button>
-      </div>
-      
-      <!-- PIN Input Section -->
-      <div id="pin-container" style="display: none; margin-top: 20px;">
-        <label for="admin-pin">Enter PIN Code:</label>
-        <input type="password" id="admin-pin" placeholder="Enter PIN" style="padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
-        <button id="submit-pin" class="button" style="margin-left: 10px;">Submit</button>
-      </div>
-      
-      <!-- Table Section (Hidden initially) -->
-      <div id="table-container" style="display: none; margin-top: 20px;">
-        <table border="1" style="width: 100%; border-collapse: collapse;">
-          <thead>
-            <tr>
-              <th style="padding: 10px; background-color: #f0f0f0;">Date</th>
-              <th style="padding: 10px; background-color: #f0f0f0;">Code</th>
-            </tr>
-          </thead>
-          <tbody id="table-body">
-            <!-- Table rows will be added here -->
-          </tbody>
-        </table>
-        <button id="add-row-btn" class="button" style="margin-top: 10px;">Add Row</button>
-      </div>
-
-      <div id="pin-container" style="display: none; margin-top: 20px;">
-        <label for="admin-pin">Enter PIN Code:</label>
-        <input type="password" id="admin-pin" placeholder="Enter PIN" style="padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
-        <button id="submit-pin" class="button" style="margin-left: 10px;">Submit</button>
+        <button id="admin-btn" class="bg-white text-black font-bold px-8 py-3 rounded-full shadow-md hover:shadow-lg mr-4 transition-all">Admin</button>
+        <button class="bg-white text-black font-bold px-8 py-3 rounded-full shadow-md hover:shadow-lg transition-all">View Only</button>
       </div>
     </div>
 
     <div class="image-section">
-      <img src="https://image.lexica.art/md2_webp/9181bbb7-2df5-4b6a-b061-77e181a4195e" alt="Superhero Image">
+      <img src="https://image.lexica.art/md2_webp/9181bbb7-2df5-4b6a-b061-77e181a4195e" alt="Superhero Image" class="w-48 rounded-2xl">
     </div>
   </div>
 
@@ -152,14 +43,12 @@
   <div class="bouncing-ball" id="ball3"></div>
 
   <script>
-    // Array to store ball data
     const balls = [
-      { element: document.getElementById("ball1"), posX: 0, posY: 0, directionX: 1, directionY: 1 },
-      { element: document.getElementById("ball2"), posX: 100, posY: 100, directionX: -1, directionY: 1 },
-      { element: document.getElementById("ball3"), posX: 200, posY: 50, directionX: 1, directionY: -1 },
+      { element: document.getElementById("ball1"), posX: 510, posY: 50, dirX: 2, dirY: 3 },
+      { element: document.getElementById("ball2"), posX: 10, posY: 100, dirX: -2, dirY: 2 },
+      { element: document.getElementById("ball3"), posX: 200, posY: 300, dirX: 3, dirY: -1 },
     ];
 
-    const ballSpeed = 4;
     const ballSize = 50;
 
     function moveBalls() {
@@ -168,12 +57,12 @@
 
       balls.forEach(ball => {
         // Update ball position
-        ball.posX += ball.directionX * ballSpeed;
-        ball.posY += ball.directionY * ballSpeed;
+        ball.posX += ball.dirX;
+        ball.posY += ball.dirY;
 
-        // Check for collisions with screen edges
-        if (ball.posX <= 0 || ball.posX >= maxWidth) ball.directionX *= -1;
-        if (ball.posY <= 0 || ball.posY >= maxHeight) ball.directionY *= -1;
+        // Check for wall collisions and reverse direction if needed
+        if (ball.posX <= 0 || ball.posX >= maxWidth) ball.dirX *= -1;
+        if (ball.posY <= 0 || ball.posY >= maxHeight) ball.dirY *= -1;
 
         // Apply the new position
         ball.element.style.left = `${ball.posX}px`;
@@ -184,17 +73,14 @@
     }
 
     document.getElementById("admin-btn").addEventListener("click", function () {
-      window.location.href = "coming-soon.html"; 
-    // Ensure any hidden elements are not displayed
+      window.location.href = "coming-soon.html";
+    });
 
-  });
+    document.querySelector(".buttons button:not(#admin-btn)").addEventListener("click", function () {
+      window.location.href = "coming-soon.html";
+    });
 
-  // Redirect "View Only" button to "Coming Soon" page
-  document.querySelector(".button:not(#admin-btn)").addEventListener("click", function () {
-    window.location.href = "coming-soon.html"; // Ensure coming-soon.html is in the same directory
-  });
-
-    // Start the animation
+    // Start the ball animation
     moveBalls();
   </script>
 </body>
